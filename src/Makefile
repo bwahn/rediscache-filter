@@ -11,11 +11,11 @@ default: redis_cache.so
 credis.o: credis.c
 	$(CC) $(CFLAGS) $(API_INC) -o credis.o -c credis.c
 
-redis_cache.o: redis_cache.cc
-	$(CXX) $(CFLAGS) $(API_INC) -o redis_cache.o -c redis_cache.cc
+rediscache_filter.o: rediscache_filter.cc
+	$(CXX) $(CFLAGS) $(API_INC) -o rediscache_filter.o -c rediscache_filter.cc
 
-redis_cache.so: redis_cache.o credis.o
-	$(CXX) $(LDFLAGS) -o redis_cache.so redis_cache.o credis.o
+rediscache_filter.so: rediscache_filter.o credis.o
+	$(CXX) $(LDFLAGS) -o rediscache_filter.so rediscache_filter.o credis.o
 
 clean:
-	rm -f redis_cache.so redis_cache.o credis.o
+	rm -f rediscache_filter.so rediscache_filter.o credis.o
