@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Vagrantfile and ./contrib move to /ats_source_root/
+
+Vagrant.configure("1") do |config|
+  config.vm.box       = 'precise64'
+  config.vm.box_url   = '/Volumes/ERIC_DATA/vagrant/templates/precise64.box'
+
+  config.vm.define :cache do |cache_config|
+    cache_config.vm.network :hostonly, "192.168.100.10"
+    cache_config.vm.host_name = 'ts-redis-plugin-box'
+    cache_config.vm.network :forwarded_port, guest: 80, host: 80
+
+    cache_config.vm.provision :puppet do |puppet|
+      puppet.manifests_path = "contrib/manifests"
+      puppet.manifest_file = "debian.pp"
+    end
+
+  end
+
+end
+
+Vagrant.configure("2") do |config|
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--hwvirtex", "off"]
+    end
+    config.vm.synced_folder ".", "/src/ats", :nfs => true
+end
