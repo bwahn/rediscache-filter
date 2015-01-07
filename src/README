@@ -1,8 +1,0 @@
-Apache Traffic Server redis-based remap plugin
-==============================================
-
-it's based mysql_remap code.
-
-                                     (decision via redis)
-[Browser] <----> [Apache Traffic Server] <----------> [Backend Servers]
-                                     (decision via redis)
