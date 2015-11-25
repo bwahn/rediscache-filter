@@ -1,6 +1,6 @@
 Author: byungwook.ahn@gmail.com
 
-redis_remap plugin
+rediscache-filter plugin
 
 ========= CREDITS ===============
 Eric Ahn <byungwook.ahn@gmail.com>
